@@ -2,7 +2,44 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@section Styles{
+    <style>
+        #map{
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+}
+
+<h1>My Google Map</h1>
+
+<div id="map"></div>
+
+
+@section Scripts{
+    <script>
+        function initMap(){
+            var options = {
+                zoom: 8,
+                center: {lat:35.0420, lng:-89.6645}
+            }
+
+            var map = new google.maps.Map(document.getElementById("map"), options);
+
+            var marker = new google.maps.Marker({
+                position: {
+                    lat:35.0420,
+                    lng:-89.6645
+                },
+                map: map,
+                icon:'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+            })
+        }
+    </script>
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDV6wRm513noTkjh0DgvAoRvZlPtXmzAKY&callback=initMap&libraries=&v=weekly"
+      async
+    ></script>
+}
+
